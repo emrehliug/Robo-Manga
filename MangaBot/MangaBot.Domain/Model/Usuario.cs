@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MangaBot.Domain.Model
 {
+    [Table("tbUsuario")]
     public class Usuario
     {
         [Key]
@@ -19,5 +21,7 @@ namespace MangaBot.Domain.Model
         public string email { get; set; }
 
         public string apikey { get; set; }
+
+        public virtual ICollection<MangaUsuario> MangasDoUsuario { get; set; }
     }
 }

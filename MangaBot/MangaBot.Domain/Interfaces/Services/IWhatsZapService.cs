@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MangaBot.Infra.Repositories.Interfaces
+namespace MangaBot.Domain.Interfaces.Services
 {
-    public interface ILogRepository
+    public interface IWhatsZapService
     {
-        public void InsereLog(Log log);
+        void enviarMensagem(Usuario usuario, Manga manga);
     }
 }

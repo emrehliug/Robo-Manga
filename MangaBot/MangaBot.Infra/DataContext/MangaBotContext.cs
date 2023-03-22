@@ -6,21 +6,14 @@ namespace MangaBot.Infra.DataContext
 {
     public class MangaBotContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public MangaBotContext(DbContextOptions<MangaBotContext> options) : base(options)
         {
-            optionsBuilder.UseMySql(
-                @"Server=186.202.152.149;Database=photobreak3;Uid=Username;Pwd=password;Persist Security Info=True;sslmode=None",
-                ServerVersion.AutoDetect(@"Server=186.202.152.149;Database=photobreak3;Uid=Username;Pwd=Password;Persist Security Info=True;sslmode=None")
-                );
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MangaUsuario>(builder =>
-            {
-                builder.ToTable("tbMangaUsuario");
-                builder.HasKey(sc => new { sc.UsuarioId, sc.MangaId });
-            });
-        }
+            modelBuilder.Entity<MangaUsuario>().HasKey(sc => new { sc.UsuarioId, sc.MangaId });
+        }               
 
         public DbSet<Manga> tbManga { get; set; }
         public DbSet<Usuario> tbUsuario { get; set; }

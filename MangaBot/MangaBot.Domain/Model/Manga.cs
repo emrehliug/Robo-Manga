@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MangaBot.Domain.Model
 {
+    [Table("tbManga")]
     public class Manga
     {
         [Key]
@@ -10,5 +12,7 @@ namespace MangaBot.Domain.Model
         public string Nome { get; set; }
 
         public int TotaldeCapitulos { get; set; }
+
+        public virtual ICollection<MangaUsuario> UsuariosDoManga { get; set; }
     }
 }

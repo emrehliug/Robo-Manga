@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MangaBot.Infra.Repositories.Interfaces
+namespace MangaBot.Domain.Interfaces.Services
 {
-    public interface IUsuarioRepository
+    public interface ILogService
     {
-        public List<Usuario> BuscarPorManga(int mangaId);
+        void InsereLog(Log log);
     }
 }
