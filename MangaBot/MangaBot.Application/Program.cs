@@ -12,13 +12,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.Configuration;
 
 //Iniciando DI
 var services = new ServiceCollection();
 
 //DI Context
-services.AddDbContext<MangaBotContext>(options => options.UseLazyLoadingProxies().UseMySql(@"Connection String My SQL",
-        ServerVersion.AutoDetect(@"Connection String My SQL")));
+services.AddDbContext<MangaBotContext>(options => options.UseLazyLoadingProxies().UseMySql(ConfigurationManager.AppSettings["ConnectionString"],
+        ServerVersion.AutoDetect(ConfigurationManager.AppSettings["ConnectionString"])));
 
 //DI Services
 services.AddScoped<IWhatsZapService, WhatsZapService>();
