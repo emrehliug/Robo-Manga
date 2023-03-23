@@ -8,7 +8,7 @@ Envio de mensagem via whatsapp avisando que o seu manga favorito de determinado 
 
 É feito um webcrawler de um site de mangas, onde o robo pega a informação de capitulos de determinado manga e verifica se houve alteração com os capitulos que estão na tabela Manga. Se sim, o mesmo atualiza a tabela e envia uma mensagem pelo whatsapp do usuario cadastrado para aquele manga.
 
-## Ferramentas utilizadas:
+## Tecnologias utilizadas:
 
 <div>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" width="50" /> 
