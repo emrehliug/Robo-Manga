@@ -28,7 +28,7 @@ services.AddScoped<ILogService, LogService>();
 services.AddScoped<IEnviarService, EnviarService>();
 
 //DI CrawlerMangaYabu
-services.AddScoped<ICrawler, CrawlerMangaYabu>();
+services.AddScoped<ICrawler, CrawlerMangaLivre>();
 
 //DI Repositorys
 services.AddScoped<IUnitOfWork, UnitOfWork>();

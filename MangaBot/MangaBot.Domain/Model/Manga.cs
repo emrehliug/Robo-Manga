@@ -13,6 +13,8 @@ namespace MangaBot.Domain.Model
 
         public int TotaldeCapitulos { get; set; }
 
+        public int codigoManga { get; set; }
+
         public virtual ICollection<MangaUsuario> UsuariosDoManga { get; set; }
     }
 }

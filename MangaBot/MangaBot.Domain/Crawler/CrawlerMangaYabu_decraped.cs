@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MangaBot.Domain.Crawler
 {
-    public class CrawlerMangaYabu : ICrawler
+    public class CrawlerMangaYabu_decraped : ICrawler
     {
         string dominio = "https://mangayabu.top";
         string rota = "/manga/";
