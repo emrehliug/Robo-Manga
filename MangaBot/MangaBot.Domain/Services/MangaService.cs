@@ -39,7 +39,7 @@ namespace MangaBot.Domain.Services
             int totalCapitulos = crawlerManga.RaspaTela(manga);
             if (totalCapitulos <= 0)
             {
-                logService.InsereLog(new Log() { execucao = $"Error no Manga: {manga.Nome}", mensagem = $"O Site mangaYabu esta com problemas e o bot não conseguiu Raspar a tela para o manga: {manga.MangaId}.", dataExecucao = DateTime.Parse(DateTime.Now.ToString()) });
+                logService.InsereLog(new Log() { execucao = $"Error no Manga: {manga.Nome}", mensagem = $"O Site manga livre esta com problemas e o bot não conseguiu Raspar a tela para o manga: {manga.MangaId}.", dataExecucao = DateTime.Parse(DateTime.Now.ToString()) });
                 return true;
             }
 

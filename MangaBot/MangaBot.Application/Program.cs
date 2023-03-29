@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using FluentScheduler;
 using MangaBot.Application.Crawler.Interface;
 using MangaBot.Domain.Crawler;
 using MangaBot.Domain.Interfaces.Repository;
@@ -10,8 +11,6 @@ using MangaBot.Infra.Repositories;
 using MangaBot.Infra.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System.Configuration;
 
 //Iniciando DI
@@ -36,13 +35,25 @@ services.AddScoped<IBaseRepository<Manga>, BaseRepository<Manga>>();
 services.AddScoped<IBaseRepository<Usuario>, BaseRepository<Usuario>>();
 services.AddScoped<IBaseRepository<MangaUsuario>, BaseRepository<MangaUsuario>>();
 services.AddScoped<IBaseRepository<Log>, BaseRepository<Log>>();
-
-
 var serviceProvider = services.BuildServiceProvider();
-var enviarService = serviceProvider.GetRequiredService<IEnviarService>();
 
 
-Console.WriteLine($"Iniciando envio de mensagens...\n");
-enviarService.Enviar();
-Console.WriteLine($"--------------------------- FIM ---------------------------------");
+JobManager.JobException += JobManager_JobException;
 
+var registry = new Registry();
+
+//Roda de 5 em 5 minutos com o FluentScheduler
+registry.Schedule(() => serviceProvider.GetRequiredService<IEnviarService>().Enviar()).ToRunNow().AndEvery(5).Minutes();
+
+JobManager.Initialize(registry);
+Thread.Sleep(Timeout.Infinite);
+
+static void JobManager_JobException(JobExceptionInfo obj)
+{
+    //logService.InsereLog(new Log 
+    //{ 
+    //    execucao = "Erro scheduler", 
+    //    mensagem = $"Erro no scheduler do manga bot, erro: {obj.Exception.Message}", 
+    //    dataExecucao = DateTime.Parse(DateTime.Now.ToString()) 
+    //});
+}
